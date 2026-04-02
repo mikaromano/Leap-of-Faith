@@ -38,11 +38,12 @@ Example names:
 ## 3) Required Asset Checklist (From GDD)
 
 ### A. Frog Characters (Core)
-- [ ] Frog base spritesheet template (shared frame layout)
-- [ ] Frog variant 1 (green)
-- [ ] Frog variant 2 (blue)
-- [ ] Frog variant 3 (purple)
-- [ ] Frog variant 4 (brown or grayscale)
+See `SPRITE_SPECS.md` §3 for the pixel-level visual identity of each variant (color, back pattern, eye shape).
+- [ ] Frog base sprite-sheet template (shared frame layout)
+- [ ] Frog variant 1 — green (round spots, big round eyes)
+- [ ] Frog variant 2 — blue (horizontal stripes, small dot eyes)
+- [ ] Frog variant 3 — red (smooth/plain, wide oval eyes)
+- [ ] Frog variant 4 — yellow (large blotches, asymmetric eyes)
 - [ ] Idle animation
 - [ ] Hop/jump animation
 - [ ] Tongue/eat animation

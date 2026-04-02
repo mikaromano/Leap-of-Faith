@@ -26,7 +26,24 @@ Quick test:
 
 ## 3) Frog Animation Set
 
-Per frog variant: green, blue, purple, brown (or grayscale).
+Per frog variant: green, blue, red, yellow.
+All variants share the same frame layout, anchor, and silhouette — only the pixels inside differ.
+
+### Visual identity per variant
+
+Each frog is drawn pure top-down. Eyes sit on top of the head (frogs' eyes protrude upward).
+
+| Variant | Color  | Back pattern                        | Eyes (top of head)                     |
+|---------|--------|-------------------------------------|----------------------------------------|
+| green   | Green  | Small round spots (3-4 px dots)     | Big round 3×3 circles                  |
+| blue    | Blue   | Horizontal stripes (1 px lines)     | Small 2×2 dot eyes                     |
+| red     | Red    | Smooth / plain (no pattern)         | Wide oval eyes (3×2 px)                |
+| yellow  | Yellow | Large blotches (2-3 irregular 4 px) | Asymmetric: one 3×3 eye, one 2×2 eye  |
+
+When building a new variant, duplicate the base template and change only:
+1. Fill color / palette ramp (body, shadow, highlight)
+2. Back pattern overlay
+3. Eye shape pixels
 
 ### Required clips
 
