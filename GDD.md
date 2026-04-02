@@ -27,6 +27,7 @@ Frogs in a swamp compete to be crowned King by being the first to catch three fi
 
 ### 3.1 The Board
 - **Grid:** 9x9 coordinate system
+- **Tiles:** Every board tile is a lily pad that can be in one of two states: Up or Sunk (water).
 - **Starting Positions:** Frogs start at designated corners/edges based on player count, four flies are placed at designated central points, and one firefly is placed at the exact middle.
 - **2-player game:** The firefly starts as a larva for 3 rounds.
 
@@ -49,16 +50,17 @@ Each round consists of three distinct phases:
 
    - **Step B: Conflict Detection**
      - Identify any tiles where `Count(Frogs) > 1` at the end of the jump.
-     - Identify any tiles where a frog is landing on a Fly, Firefly, or Poop.
+     - Identify any tiles where a frog is landing on a Fly or Firefly.
+     - Detect destination tile state (Up lily pad or Sunk/water) for post-jump resolution.
 
    - **Step C: The Great Leap (Visual Execution)**
      - All frogs animate their movement to their targets simultaneously.
 
    - **Step D: Collision & Item Resolution**
      - For those not in collision:
-       - **Firefly:** +1 point for the player; remove the firefly from the board.
-       - **Fly:** Add 1 random Special Jump card to the player’s hand; remove the fly.
-       - **Poop:** The frog stops immediately; all future jumps for this player are cancelled, and the poop is removed.
+       - **Water (Sunk tile):** The frog becomes Stuck in Water; remaining jumps this round are cancelled. See 3.9.
+       - **Firefly:** +1 point for the player; remove the firefly from the board. Queue the lily pad to sink
+       - **Fly:** Add 1 random Special Jump card to the player’s hand; remove the fly. Queue the lily pad to sink
      - If a collision occurred:
        - Takes place after those not in collision.
        - Affected frogs are marked as In Collision.
@@ -70,7 +72,7 @@ Each round consists of three distinct phases:
    - Larvae (תולעים) from the previous round become active flies/fireflies.
    - New larvae are spawned randomly on available space.
    - When spawning larvae it should show upon spawning what each larva will become (fly or firefly), and after spawning it remains a larva with no further indication to what it will become (players should remember).
-   - **Spawn Rules:** Larvae spawn only on empty tiles (no frogs, flies, fireflies). Flies can spawn on poop.
+   - **Spawn Rules:** Larvae spawn only on empty tiles (no frogs, flies, fireflies). Larvae may spawn on Sunk tiles.
 
 ### 3.3 Conflict Resolution (Collisions)
 - **Trigger:** If two or more frogs land on the same tile at the end of a jump
@@ -84,6 +86,7 @@ Each round consists of three distinct phases:
 - **Edge Cases:**
   - If two collisions happen simultaneously, all players jump together like a jump in a round.
   - Collision-involved frogs can bounce to a tile occupied by an unrelated frog, making it also part of a collision.
+  - If a collision bounce lands a frog on a Sunk/water tile, that frog becomes Stuck in Water and cannot continue remaining jumps this round.
 
 ### 3.4 Movement Types
 - **Normal Jump:** 1 square in a cardinal direction
@@ -94,7 +97,6 @@ Each round consists of three distinct phases:
 ### 3.5 Items & Scoring
 - **Firefly:** Landing here grants 1 point. First to 3 wins.
 - **Fly:** Landing here grants 1 random Special Jump Card.
-- **Poop:** Landing on a Poop tile stops the player and cancels remaining jumps, also clears the poop.
 
 ### 3.6 Cards & Hand Management
 - **Hand Size:** 5 cards max
@@ -111,10 +113,11 @@ Each round consists of three distinct phases:
 - **Reveal Rule:** Show the type briefly on spawn, then hide and keep as larva until it matures.
 - **Maturation:** Larvae mature at the start of the next Cleanup/Spawn Phase.
 
-### 3.9 Poop Generation
-- **Source:** Poop is created when a frog moves from a tile where they ate a fly or firefly.
-- **Duration:** Poop remains until a frog lands on it.
-- **Flies:** A fly/firefly can spawn on a poop tile;
+### 3.9 Lily Pad Sink/Restore Rules
+- **Stuck in Water state:** A frog that lands on water becomes Stuck in Water and all remaining jumps in the current round are cancelled (same cancellation behavior as collision).
+- **After eating Fly/Firefly:** The source tile remains Up for the rest of the current jump. On that frog's next executed jump the lily pad sinks to Sunk. If the tile is already Sunk (e.g. the frog ate a fly on a water tile), no additional sink occurs.
+- **Water recovery:** On a Stuck frog's next executed jump, the lily pad at its current position is restored from Sunk to Up and the frog finishes the jump seated on that restored lily pad.
+- **Collision interaction:** Standard collision logic still applies after destination and tile-state legality are resolved.
 
 ## 4. UI/UX Design
 

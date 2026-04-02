@@ -20,7 +20,7 @@ Use this as default guidance for gameplay-related work. If the user explicitly a
 - Grid size, player counts, and win condition.
 - Card types and special jump behavior.
 - Collision cancellation and bounce flow.
-- Spawn and poop interactions.
+- Spawn, lily pad sink/restore, and water-stuck interactions.
 
 - For gameplay UI changes, keep behavior aligned with `GDD.md` interaction requirements:
 - Ready flow and timing assumptions.
