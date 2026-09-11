@@ -16,7 +16,7 @@ This file is the single source of truth for art/audio asset progress.
 - `assets/audio/music/` - Menu and match music
 - `assets/audio/voice/` - Optional voice lines / announcer
 - `assets/fonts/` - Bitmap or TTF fonts used in UI
-- `assets/reference/` - Moodboards, palette refs, sketches
+- `assets/reference/` - Mood-boards, palette refs, sketches
 
 ## 2) Naming + Export Rules
 
