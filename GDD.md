@@ -128,7 +128,10 @@ Each round consists of three distinct phases:
 
 ### 4.2 Accessibility & Controls
 - **Input:** Mouse (drag/drop) and keyboard shortcuts for card placement and rotation
-- **Color Safety:** Colorblind-safe icons for flies, fireflies, and larvae types; not color-only
+- **Visual Distinction:** Every game element must be identifiable without relying on color alone:
+  - **Frogs:** Pure top-down view. Each frog is distinguished by **color palette**, **back pattern**, and **eye shape** (eyes protrude upward and are clearly visible top-down). See §6 for the specific variants.
+  - **Flies vs Fireflies:** Flies use a small rounded-wing silhouette; fireflies use a pointed-wing silhouette with a visible lantern glow. Both carry a distinct icon overlay (fly = spiral wings, firefly = star/lantern).
+  - **Larvae:** Larvae use a curled grub shape. Fly-larvae and firefly-larvae share the same neutral sprite once the brief reveal ends, so players must rely on memory.
 - **Readability:** Scalable UI and clear grid coordinates for planning
 
 ### 4.3 User Interactions
@@ -146,7 +149,16 @@ Each round consists of three distinct phases:
 - **PvC (AI):** Simple baseline AI that targets nearest fly/firefly and avoids collisions when possible; optional difficulty tiers.
 
 ## 6. Art & Audio
-- **Art Style:** Stylized 2D cartoon, overview, background animation.
-- **Color Palette:** Greens, muddy browns, neon yellows? (fireflies)
-- **Sound Effects:** Boing (Jump), Gulp (Eating), Splat (Collision)
+- **Art Style:** Silly/goofy 2D cartoon pixel art, pure top-down view, background animation.
+- **Color Palette:** Greens, muddy browns, neon yellows (fireflies).
+- **Frog Variants:** All built from one base template; differences are color, back pattern, and eye shape.
+
+  | Frog | Color  | Back Pattern       | Eyes                          |
+  |------|--------|--------------------|-------------------------------|
+  | 1    | Green  | Round spots        | Big round eyes (classic goofy)|
+  | 2    | Blue   | Horizontal stripes | Small dot eyes                |
+  | 3    | Red    | Smooth / plain     | Wide oval eyes                |
+  | 4    | Yellow | Large blotches     | Asymmetric (one big, one small)|
+
+- **Sound Effects:** Boing (Jump), Gulp (Eating), Splat (Collision). Each frog's jump SFX has a slightly different pitch/timbre so players can distinguish actions by ear.
 - **Dynamic Music:** Theme for each frog, which progresses by number of points the same frog has. More points equals more intensity. Inspired by Wii Tanks.
